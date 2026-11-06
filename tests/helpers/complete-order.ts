@@ -16,7 +16,10 @@ export async function completeOrderAndCleanup(
   await expect(homePage.deliveryAddressHeading).toBeVisible();
   await expect(homePage.billingAddressHeading).toBeVisible();
 
-  for (const address of [homePage.deliveryAddressDetails, homePage.billingAddressDetails]) {
+  for (const address of [
+    homePage.deliveryAddressDetails,
+    homePage.billingAddressDetails,
+  ]) {
     await expect(address).toContainText(signupData.name);
     await expect(address).toContainText(signupData.address);
     await expect(address).toContainText(signupData.city);

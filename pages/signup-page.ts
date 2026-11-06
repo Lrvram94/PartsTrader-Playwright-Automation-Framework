@@ -44,8 +44,8 @@ export class SignupPage {
   }
 
   get addressInput(): Locator {
-    return this.page.locator('#address1');  
-  } 
+    return this.page.locator('#address1');
+  }
 
   get countryInput(): Locator {
     return this.page.locator('#country');

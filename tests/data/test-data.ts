@@ -1,7 +1,7 @@
 import { faker } from '@faker-js/faker';
 
 export const testData = {
-	cartPath: '/view_cart',
+  cartPath: '/view_cart',
   cartProducts: ['Blue Top', 'Men Tshirt'],
 } as const;
 

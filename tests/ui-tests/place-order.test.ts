@@ -8,13 +8,29 @@ import { testData } from '../data/test-data';
 test.describe('Place Order', () => {
   test.beforeEach(async ({ page }) => {
     const homePage = new HomePage(page);
+    for (let attempt = 1; attempt <= 3; attempt++) {
+      await homePage.open();
 
+      if (!(await homePage.queueFullMessage.isVisible())) {
+        break;
+      }
+
+      if (attempt === 3) {
+        throw new Error(
+          `Environment failure: ${environment.name} at ${environment.baseURL} returned a queue-full page after 3 attempts.`,
+        );
+      }
+
+      await page.waitForTimeout(attempt * 1_000);
+    }
     await homePage.open();
     await expect(page).toHaveURL(environment.baseURL);
     await expect(homePage.websiteLogo).toBeVisible();
   });
 
-  test('Test Case 14: Place Order - Register while Checkout', async ({ page }) => {
+  test('Test Case 14: Place Order - Register while Checkout', async ({
+    page,
+  }) => {
     const homePage = new HomePage(page);
     const [firstProduct, secondProduct] = testData.cartProducts;
 
@@ -36,10 +52,11 @@ test.describe('Place Order', () => {
     await homePage.cartLink.click();
     await homePage.checkoutButton.click();
     await completeOrderAndCleanup(page, signupData);
-
   });
 
-  test('Test Case 15: Place Order - Register before Checkout', async ({ page }) => {
+  test('Test Case 15: Place Order - Register before Checkout', async ({
+    page,
+  }) => {
     const homePage = new HomePage(page);
     const [firstProduct, secondProduct] = testData.cartProducts;
 
@@ -58,7 +75,6 @@ test.describe('Place Order', () => {
     await expect(homePage.orderRowFor(firstProduct)).toBeVisible();
     await expect(homePage.orderRowFor(secondProduct)).toBeVisible();
     await homePage.checkoutButton.click();
-
     await completeOrderAndCleanup(page, signupData);
   });
 });
