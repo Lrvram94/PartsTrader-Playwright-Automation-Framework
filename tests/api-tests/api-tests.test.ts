@@ -61,6 +61,5 @@ test('API 10: POST To Verify Login with invalid details', async ({
 
   const body = await response.json();
   test.expect(body.responseCode).toBe(404);
-  console.log(body);
   test.expect(body.message).toBe('User not found!');
 });
