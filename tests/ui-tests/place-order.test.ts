@@ -8,6 +8,7 @@ import { testData } from '../data/test-data';
 test.describe('Place Order', () => {
   test.beforeEach(async ({ page }) => {
     const homePage = new HomePage(page);
+    //Checking if the website is down with Queue Full message
     for (let attempt = 1; attempt <= 3; attempt++) {
       await homePage.open();
 

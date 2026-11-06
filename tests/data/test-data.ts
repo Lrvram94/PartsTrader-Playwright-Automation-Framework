@@ -53,3 +53,10 @@ export function createPaymentData() {
 export function createOrderComment(): string {
   return faker.lorem.sentence();
 }
+
+export function createInvalidCredentials() {
+  return {
+    email: createSignupData().email, // UUID-based, so it can't match a real account
+    password: faker.internet.password(),
+  };
+}
