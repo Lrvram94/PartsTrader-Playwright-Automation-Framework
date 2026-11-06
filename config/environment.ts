@@ -5,10 +5,12 @@ export type TestEnvironmentName = 'dev' | 'test';
 const environments = {
   dev: {
     baseURL: 'https://automationexercise.com/',
+    baseURLVariable: 'DEV_URL',
     passwordVariable: 'DEV_PASSWORD',
   },
   test: {
     baseURL: 'https://test.automationexercise.com/',
+    baseURLVariable: 'TEST_URL',
     passwordVariable: 'TEST_PASSWORD',
   },
 } as const;
@@ -22,6 +24,7 @@ if (selectedEnvironment !== 'dev' && selectedEnvironment !== 'test') {
 }
 
 const settings = environments[selectedEnvironment];
+const baseURL = process.env[settings.baseURLVariable] || settings.baseURL;
 const password = process.env[settings.passwordVariable];
 
 if (!password) {
@@ -30,6 +33,6 @@ if (!password) {
 
 export const environment = {
   name: selectedEnvironment,
-  baseURL: settings.baseURL,
+  baseURL,
   password,
 };
