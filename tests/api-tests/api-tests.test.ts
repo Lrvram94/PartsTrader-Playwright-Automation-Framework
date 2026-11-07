@@ -5,6 +5,11 @@ import {
   deleteAccountViaApi,
 } from '../helpers/api-account';
 import { createInvalidCredentials } from '../data/test-data';
+import { skipIfEnvironmentUnreachable } from '../helpers/environment-availability';
+
+test.beforeEach(async ({ request }, testInfo) => {
+  await skipIfEnvironmentUnreachable(request, testInfo);
+});
 
 test('API 7: verifyLogin with valid details', async ({ request }) => {
   const user = await createAccountViaApi(request, environment.password);

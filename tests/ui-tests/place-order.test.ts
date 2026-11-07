@@ -4,9 +4,14 @@ import { environment } from '../../config/environment';
 import { completeOrderAndCleanup } from '../helpers/complete-order';
 import { registerNewUser } from '../helpers/register-user';
 import { testData } from '../data/test-data';
+import { skipIfEnvironmentUnreachable } from '../helpers/environment-availability';
+
+const [firstProduct, secondProduct] = testData.cartProducts;
 
 test.describe('Place Order', () => {
-  test.beforeEach(async ({ page }) => {
+  test.beforeEach(async ({ page, request }, testInfo) => {
+    await skipIfEnvironmentUnreachable(request, testInfo);
+
     const homePage = new HomePage(page);
     //Checking if the website is down with Queue Full message
     for (let attempt = 1; attempt <= 3; attempt++) {
@@ -33,7 +38,6 @@ test.describe('Place Order', () => {
     page,
   }) => {
     const homePage = new HomePage(page);
-    const [firstProduct, secondProduct] = testData.cartProducts;
 
     // Add products to the cart
     await homePage.addToCartButtonFor(firstProduct).click();
@@ -59,7 +63,6 @@ test.describe('Place Order', () => {
     page,
   }) => {
     const homePage = new HomePage(page);
-    const [firstProduct, secondProduct] = testData.cartProducts;
 
     // Register before shopping
     await homePage.signupLoginLink.click();
