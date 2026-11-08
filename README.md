@@ -1,6 +1,6 @@
 ---
-title: PartsTrader Playwright Automation Framework
-description: Playwright and TypeScript UI and API tests for AutomationExercise
+Title: PartsTrader Playwright Automation Framework
+Description: Playwright and TypeScript UI and API tests for AutomationExercise
 ---
 
 ## Overview

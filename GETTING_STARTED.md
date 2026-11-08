@@ -1,8 +1,6 @@
 ---
-title: Getting Started
-description: Set up the PartsTrader Playwright framework, configure an environment, and run its UI and API tests
-ms.date: 2026-11-07
-ms.topic: tutorial
+Title: Getting Started
+Description: Set up the PartsTrader Playwright framework, configure an environment, and run its UI and API tests
 ---
 
 ## Purpose

@@ -1,6 +1,6 @@
 ---
-title: Issues
-description: Issues observed in the AutomationExercise website and test environment
+Title: Issues
+Description: Issues observed in the AutomationExercise website and test environment
 ---
 
 ## Documented Issues
