@@ -12,6 +12,11 @@ export async function skipIfEnvironmentUnreachable(
 
     const message = `Selected environment "${environment.name}" at ${environment.baseURL} is unreachable: ${reason}`;
     process.stderr.write(`${message}\n`);
+
+    if (process.env.CI) {
+      throw new Error(message);
+    }
+
     testInfo.skip(true, message);
   }
 }

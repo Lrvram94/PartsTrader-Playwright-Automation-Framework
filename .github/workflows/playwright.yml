@@ -63,6 +63,7 @@ jobs:
         run: npm run lint
 
       - name: Install browsers
+        if: ${{ env.TEST_SUITE != 'api' }}
         run: npx playwright install --with-deps chromium firefox
 
       - name: Run tests
